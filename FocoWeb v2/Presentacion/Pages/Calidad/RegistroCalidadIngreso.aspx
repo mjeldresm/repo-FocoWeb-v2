@@ -242,7 +242,7 @@
                                                         <asp:SqlDataSource ID="sqlEtapa" runat="server"
                                                             SelectCommand="SELECT [ID_ETA], [NOMBRE_ETA], [ID_OBR] FROM [ETAPAS_NIVELES] WHERE ([ID_OBR] = @ID_OBR) ORDER BY  NOMBRE_ETA ASC">
                                                             <SelectParameters>
-                                                                <asp:SessionParameter Name="ID_OBRA" SessionField="a" Type="Int64" />
+                                                                <asp:SessionParameter Name="ID_OBR" SessionField="idObra" Type="Int64" />
                                                             </SelectParameters>
                                                         </asp:SqlDataSource>
                                                     </div>
