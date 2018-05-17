@@ -25,8 +25,8 @@ Public Class Global_asax
 
    Sub Application_Error(ByVal sender As Object, ByVal e As EventArgs)
         ' Se desencadena cuando se produce un error
-        'Server.ClearError()
-        'Response.Redirect("../Seguridad/error.aspx")
+        Server.ClearError()
+        Response.Redirect("../Seguridad/error.aspx")
     End Sub
     Sub Session_End(ByVal sender As Object, ByVal e As EventArgs)
         ' Se desencadena cuando finaliza la sesión
