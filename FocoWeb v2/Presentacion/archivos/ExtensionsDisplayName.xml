@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Names>
+  <Extension Extension=".txt" DisplayName="Documentos de textos (.txt)" />
+  <Extension Extension=".log" DisplayName="archivos log (.txt)" />
+  <Extension Extension=".rtf" DisplayName="Texto Enriquesido (.rtf)" />
+  <Extension Extension=".xml" DisplayName="XML archivo (.xml)" />
+  <Extension Extension=".png" DisplayName="PNG imagen (.png)" />
+  <Extension Extension=".jpg" DisplayName="JPEG imagen (.jpg)" />
+  <Extension Extension=".mp3" DisplayName="Audio (.mp3)" />
+  <Extension Extension=".avi" DisplayName="Video (.avi)" />
+  <Extension Extension=".zip" DisplayName="Comprimido (.zip)" />
+  <Extension Extension=".dll" DisplayName="Libreria (.dll)" />
+  <Extension Extension=".aspx" DisplayName="Web Form (.aspx)" />
+  <Extension Extension=".vb" DisplayName="Codigo Servidor (.vb)" />
+  <Extension Extension=".licx" DisplayName="Archivo Licencia (.licx)" />
+  <Extension Extension=".config" DisplayName="Archivo de configuración (.config)" />
+</Names>
