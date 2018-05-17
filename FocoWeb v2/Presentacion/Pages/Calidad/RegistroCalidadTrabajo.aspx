@@ -31,6 +31,7 @@
 }
 .dropZoneExternal
 {
+   
     position: relative;
     border: 1px dashed #f17f21!important;
     cursor: pointer;
