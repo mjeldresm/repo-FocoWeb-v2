@@ -14,7 +14,7 @@ Public Class Formulario_web112
 #Region "grilla check"
     Public ReadOnly Property ListSource() As List(Of Calidad.Checklist)
         Get
-            Dim  idRegistro As String = Request.Params("idRegistro")
+            Dim idRegistro As String = Request.Params("idRegistro")
             Dim ssUsuario As DAL.Seguridad.UsuarioSistema = Session.Contents("xSSN_USUARIO")
             If Session("DataSourceCheckList") Is Nothing Then
                 Session("DataSourceCheckList") = DAL.Calidad.Checklist.traerRegistro(ssUsuario, idRegistro)
@@ -35,6 +35,8 @@ Public Class Formulario_web112
 
             Session.Add("historial", False)
             Dim idRegistro As String = Request.Params("idRegistro")
+            Session.Add("idregistro", idRegistro)
+
             'Dim carpeta As String = "/archivos/" & idRegistro & "/"
             Dim ssUsuario As DAL.Seguridad.UsuarioSistema = Session.Contents("xSSN_USUARIO")
             Dim dsregistro As DataSet = DAL.registro.registro.traerRegistro(ssUsuario, idRegistro)
@@ -82,7 +84,46 @@ Public Class Formulario_web112
             editor.ClientSideEvents.CheckedChanged = "checkedChanged"
         End If
     End Sub
+
+
+
+#Region "Web method"
+    <System.Web.Services.WebMethod()>
+    Public Shared Sub finalizar()
+        Try
+            Dim ssUsuario As DAL.Seguridad.UsuarioSistema = HttpContext.Current.Session.Contents("xSSN_USUARIO")
+            Dim idRegistro As String = HttpContext.Current.Session.Contents("idRegistro")
+            Dim dsRespuesta As DataSet = DAL.registro.registro.actualizaEstado(ssUsuario, idRegistro)
+        Catch ex As Exception
+        End Try
+    End Sub
+
+
+
+
+
+    'Protected Sub txtnombre_ValueChanged(sender As Object, e As EventArgs) Handles txtnombre.ValueChanged
+    '    Session.Add("xtxtNombre", txtnombre.Value)
+    'End Sub
+
+    'Protected Sub txtMemPbservaciones_ValueChanged(sender As Object, e As EventArgs) Handles txtMemPbservaciones.ValueChanged
+    '    Session.Add("xObs", txtMemPbservaciones.Text)
+    'End Sub
+
+    'Protected Sub codigotexto_TextChanged(sender As Object, e As EventArgs) Handles codigotexto.TextChanged
+    '    Session.Add("xCodigo", codigotexto.Text)
+    'End Sub
+
+    'Protected Sub txtMemPbservaciones_TextChanged(sender As Object, e As EventArgs) Handles txtMemPbservaciones.TextChanged
+    '    Session.Add("xObs", txtMemPbservaciones.Text)
+    'End Sub
+#End Region
+
     Protected Sub grilla_check_BatchUpdate(sender As Object, e As ASPxDataBatchUpdateEventArgs) Handles grilla_check.BatchUpdate
+
+
+
+
         Try
             For Each args In e.UpdateValues
                 UpdateItemList(args.Keys, args.NewValues)
