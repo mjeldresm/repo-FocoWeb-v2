@@ -17,7 +17,6 @@
     <style>
    .list-group-item
    {
-    
     position: relative;
     display: block;
     padding: 10px 15px;
