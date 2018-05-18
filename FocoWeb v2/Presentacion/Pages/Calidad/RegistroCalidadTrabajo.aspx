@@ -300,7 +300,7 @@
                                                                         }
 
                                                                            function OnBatchEditEndEditing(s, e) {
-                                                                              // validadGrilla();
+                                                                              
                                                                            }
                                                                             
 
@@ -318,7 +318,7 @@
 
                                                                                
                                                                                if (grid.batchEditApi.GetCellValue(i, "ESTADO_CON_FALLOS") != null ) {
-                                                                                   console.log('fila')
+                                                                                  
                                                                                    totCK++;
                                                                                 if (grid.batchEditApi.GetCellValue(i, "ESTADO_CON_FALLOS")) { countFallos++; }
                                                                                 if (grid.batchEditApi.GetCellValue(i, "ESTADO_APROBACION")) { countAprobados++; }
@@ -326,31 +326,12 @@
                                                                                }
                                                                               
                                                    }
-                                                   console.log(countAprobados);
-                                                   console.log(countFallos);
-                                                   console.log(countNA);
-                                                   console.log(totCK);
+                                                   
                                                    if (countFallos > 0) { myFuncionAlerta(-1); }
                                                    else if (countAprobados + countNA < totCK) { myFuncionAlerta(0); } 
                                                    else if (countAprobados + countNA == totCK) { myFuncionAlerta(1); } 
-                                                                           //for (var i = 0; i < grid.GetColumnsCount() ; i++) {
-                                                                           //     var column = grid.GetColumn(i);
-                                                                           //     var editor = grid.GetEditor(i);
-                                                                           //     if (editor == null || column == focusedColumn || column.fieldName == "ID_REG_CHK" || column.fieldName == "NOMBRE_GRP_CHK" || column.fieldName == "ESPECIFICACION_CHK" || column.fieldName == "CRITERIO_CONTROL" || column.fieldName == "OBSERVACION_CHK") {
-                                                                           //         continue;
-                                                                           //    }
-
-                                                                           //    var key = rowValues[]
-                                                                           //    if (column.fieldName == "ESTADO_APROBACION") { if (rowValues[(column.fieldName).visibleIndex].value) { countAprobados++; } }
-                                                                           //    if (column.fieldName == "ESTADO_CON_FALLOS") { if (rowValues[(column.fieldName).visibleIndex].value) { countFallos++; } }
-                                                                           //    if (column.fieldName == "ESTADO_NA") { if (rowValues[(column.fieldName).visibleIndex].value) { countNA++; } }
-                                                                           //}
-                                                                           //if (countAprobados == rowsCount) { myFuncionAlerta(1); } else { myFuncionAlerta(0);}
-                                                                           //if (countFallos > 0) { myFuncionAlerta(-1); }
-                                                                           //if (countAprobados == rowsCount) { myFuncionAlerta(1); }
-                                                   //grid.CancelEdit();
-
-                                                                       }
+                                                                         
+                                                   }
 
 
 
