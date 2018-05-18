@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Master/Main.Master" CodeBehind="RegistroCalidadTrabajo.aspx.vb" Inherits="Presentacion.Formulario_web112" %>
+<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Master/Main.Master" CodeBehind="RegistroCalidadTrabajo.aspx.vb" Inherits="Presentacion.Formulario_web112" %>
 <%@ Register Assembly="DevExpress.Web.ASPxTreeList.v17.2, Version=17.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxTreeList" TagPrefix="dx" %>
 <%@ Register Assembly="DevExpress.Web.Bootstrap.v17.2, Version=17.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.Bootstrap" TagPrefix="dx" %>
 <%@ Register Assembly="DevExpress.Web.v17.2, Version=17.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
@@ -31,7 +31,6 @@
 }
 .dropZoneExternal
 {
-   
     position: relative;
     border: 1px dashed #f17f21!important;
     cursor: pointer;
@@ -300,7 +299,7 @@
                                                                         }
 
                                                                            function OnBatchEditEndEditing(s, e) {
-                                                                              
+                                                                              // validadGrilla();
                                                                            }
                                                                             
 
@@ -315,23 +314,40 @@
                                                                            var rowsCount = grid.GetVisibleRowsOnPage();
                                                    //console.log(rowsCount);
                                                                            for (var i = 0; i < rowsCount; i++) {
-
-                                                                               
                                                                                if (grid.batchEditApi.GetCellValue(i, "ESTADO_CON_FALLOS") != null ) {
-                                                                                  
+                                                                                   console.log('fila')
                                                                                    totCK++;
                                                                                 if (grid.batchEditApi.GetCellValue(i, "ESTADO_CON_FALLOS")) { countFallos++; }
                                                                                 if (grid.batchEditApi.GetCellValue(i, "ESTADO_APROBACION")) { countAprobados++; }
                                                                                 if (grid.batchEditApi.GetCellValue(i, "ESTADO_NA")) { countNA++;}
                                                                                }
                                                                               
-                                                   }
-                                                   
-                                                   if (countFallos > 0) { myFuncionAlerta(-1); }
-                                                   else if (countAprobados + countNA < totCK) { myFuncionAlerta(0); } 
-                                                   else if (countAprobados + countNA == totCK) { myFuncionAlerta(1); } 
-                                                                         
-                                                   }
+                                                                           }
+                                                                               console.log(countAprobados);
+                                                                               console.log(countFallos);
+                                                                               console.log(countNA);
+                                                                               console.log(totCK);
+                                                                               if (countFallos > 0) { myFuncionAlerta(-1); }
+                                                                               else if (countAprobados + countNA < totCK) { myFuncionAlerta(0); } 
+                                                                               else if (countAprobados + countNA == totCK) { myFuncionAlerta(1); } 
+                                                                           //for (var i = 0; i < grid.GetColumnsCount() ; i++) {
+                                                                           //     var column = grid.GetColumn(i);
+                                                                           //     var editor = grid.GetEditor(i);
+                                                                           //     if (editor == null || column == focusedColumn || column.fieldName == "ID_REG_CHK" || column.fieldName == "NOMBRE_GRP_CHK" || column.fieldName == "ESPECIFICACION_CHK" || column.fieldName == "CRITERIO_CONTROL" || column.fieldName == "OBSERVACION_CHK") {
+                                                                           //         continue;
+                                                                           //    }
+
+                                                                           //    var key = rowValues[]
+                                                                           //    if (column.fieldName == "ESTADO_APROBACION") { if (rowValues[(column.fieldName).visibleIndex].value) { countAprobados++; } }
+                                                                           //    if (column.fieldName == "ESTADO_CON_FALLOS") { if (rowValues[(column.fieldName).visibleIndex].value) { countFallos++; } }
+                                                                           //    if (column.fieldName == "ESTADO_NA") { if (rowValues[(column.fieldName).visibleIndex].value) { countNA++; } }
+                                                                           //}
+                                                                           //if (countAprobados == rowsCount) { myFuncionAlerta(1); } else { myFuncionAlerta(0);}
+                                                                           //if (countFallos > 0) { myFuncionAlerta(-1); }
+                                                                           //if (countAprobados == rowsCount) { myFuncionAlerta(1); }
+                                                   //grid.CancelEdit();
+
+                                               }
 
 
 
@@ -346,44 +362,83 @@
                                                                                         return decodeURIComponent(results[2].replace(/\+/g, " "));
                                                                          }
                                                function OnToolbarItemClick(s, e) {
-                                                   
-                                                  
-                                                                                        if (e.item.name =='imprimir') {
-                                                                                           var idReg = getParameterByName('idRegistro');
-                                                                                           window.open('../Reportes/Reporte.aspx?idRegistro='+ idReg , '_blank');
-                                                                                        }
-                                                                                        if (e.item.name == 'cancel') {
-                                                                                            grid.CancelEdit();
-                                                                                        }
-                                                                                        //if (e.item.name == 'finalizar') {
-                                                                                        //    grid.OnBatchEditEndEditing();
 
-                                                                                        //}
 
-                                                                                       if (e.item.name == 'finalizar') {
-                                                                                                     console.log('entre en finaliza');
-                                                                                                     validadGrilla();
-                                                                                           
-                                                                                        }
-                                                                                        if (e.item.name == 'finalizaP') {
-                                                                                                     console.log('entre en finaliza');
-                                                                                                     validadGrilla();
-                                                                                                    grid.UpdateEdit();
-                                                                                        }
+                                                   if (e.item.name == 'imprimir') {
+                                                       var idReg = getParameterByName('idRegistro');
+                                                       window.open('../Reportes/Reporte.aspx?idRegistro=' + idReg, '_blank');
+                                                   }
+                                                   if (e.item.name == 'cancel') {
+                                                       grid.CancelEdit();
+                                                   }
+                                                   //if (e.item.name == 'finalizar') {
+                                                   //    grid.OnBatchEditEndEditing();
 
-                                                                                        if (e.item.name == 'historial') {
-                                                                                             e.processOnServer = true;
-                                                                                            e.usePostBack = true;
-                                                                                        }
-                                                                                        if (IsCustomExportToolbarCommand(e.item.name)) {
-                                                                                            e.processOnServer = true;
-                                                                                            e.usePostBack = true;
-                                                                                        }
-                                                                                    }
-                                                                        function IsCustomExportToolbarCommand(command) {
+                                                   //}
+
+                                                   if (e.item.name == 'finalizar') {
+                                                       console.log('entre en finalizar');
+                                                       validadGrilla();
+
+                                                   }
+                                                   if (e.item.name == 'finalizaP') {
+                                                       console.log('entre en finalizaP');
+
+                                                       
+                                                        grid.UpdateEdit();
+                                                       validadGrilla();
+                                                       //if (!grid.batchEditApi.HasChanges()) {
+                                                           console.log('entra al !grid.batchEditApi.HasChanges()');
+                                                           var datos = "{}";
+                                                           $.ajax({
+                                                                    type: "POST",
+                                                                    url: "RegistroCalidadTrabajo.aspx/finalizar",
+                                                                    data: datos,
+                                                                    contentType: "application/json; charset=utf-8",
+                                                                    dataType: "json",
+                                                                    success: function (response) {
+                                                                    },
+                                                                    error: function (response) {
+
+                                                                    }
+                                                             });
+                                                          
+                                                       //}
+                                                   }
+                                                   //if (!grid.batchEditApi.HasChanges()) {
+                                                   //    $.ajax({
+                                                   //         type: "POST",
+                                                   //         url: "RegistroCalidadIngreso.aspx/guardaPaso_1",
+                                                   //         data: datos,
+                                                   //         contentType: "application/json; charset=utf-8",
+                                                   //         dataType: "json",
+                                                   //         success: function (response) {
+                                                   //         },
+                                                   //         error: function (response) {
+
+                                                   //         }
+                                                   //     });
+                                                   //}      
+
+
+                                                   //validadGrilla();
+
+
+
+
+                                                   if (e.item.name == 'historial') {
+                                                       e.processOnServer = true;
+                                                       e.usePostBack = true;
+                                                   }
+                                                   if (IsCustomExportToolbarCommand(e.item.name)) {
+                                                       e.processOnServer = true;
+                                                       e.usePostBack = true;
+                                                   }
+                                               }
+                                                                                    function IsCustomExportToolbarCommand(command) {
                                                                                         return command == "CustomExportToXLS" || command == "CustomExportToXLSX" 
                                                                                     }
-                                                                        function myFuncionAlerta(respuesta) {
+                                                                                    function myFuncionAlerta(respuesta) {
                                                                            
                                                                                         if (respuesta == 0)
                                                                                         {
@@ -420,6 +475,9 @@
                                                                                             setTimeout(function () { window.open('RegistrosCalidadListado.aspx', '_self'); }, 3000);
                                                                                         }
                                                                                     }
+                                                                        
+
+
                                              </script>
                                         
                                             <dx:ASPxGridView ID="grilla_check" runat="server"
